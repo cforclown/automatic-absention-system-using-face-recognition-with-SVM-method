@@ -3,6 +3,9 @@ import tkinter as tk
 from PIL import ImageTk, Image
 from datetime import datetime
 
+
+CAM_PORT = 1
+
 def recordFaceDone():
     intructions.config(text="Rekam Data Telah Selesai!")
 def trainFaceDone():
@@ -12,7 +15,7 @@ def attendanceRecorded():
 
 def recordFace():
     wajahDir = 'datawajah'
-    cam = cv2.VideoCapture(0)
+    cam = cv2.VideoCapture(CAM_PORT)
     cam.set(3, 640)
     cam.set(4, 480)
     faceDetector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
@@ -88,7 +91,7 @@ def markAttendance(name):
 def attendance():
     wajahDir = 'datawajah'
     latihDir = 'latihwajah'
-    cam = cv2.VideoCapture(0)
+    cam = cv2.VideoCapture(CAM_PORT)
     cam.set(3, 640)
     cam.set(4, 480)
     faceDetector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
@@ -144,7 +147,7 @@ canvas.configure(bg="black")
 judul = tk.Label(root, text="Face Attendance - Smart Absensi", font=("Roboto",34),bg="#242526", fg="white")
 canvas.create_window(350, 80, window=judul)
 #credit
-made = tk.Label(root, text="Made by Alvin Aprianto", font=("Times New Roman",13), bg="black",fg="white")
+made = tk.Label(root, text="V1", font=("Times New Roman",13), bg="black",fg="white")
 canvas.create_window(360, 20, window=made)
 # for entry data nama
 entry1 = tk.Entry (root, font="Roboto")
