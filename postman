@@ -1,0 +1,716 @@
+{
+	"info": {
+		"_postman_id": "4f7e6911-06a0-4649-899d-92dffd093b2b",
+		"name": "mern-stack-boilerplate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "get",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dev-url}}/{{users-resource-path}}/6233f7954f7e9bd300ab7b6c",
+							"host": [
+								"{{dev-url}}"
+							],
+							"path": [
+								"{{users-resource-path}}",
+								"6233f7954f7e9bd300ab7b6c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\": \"\",\r\n    \"pagination\": {\r\n        \"page\": 1,\r\n        \"limit\": 10,\r\n        \"sort\": {\r\n            \"order\": 1,\r\n            \"by\": \"fullname\"\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev-url}}/{{users-resource-path}}/find",
+							"host": [
+								"{{dev-url}}"
+							],
+							"path": [
+								"{{users-resource-path}}",
+								"find"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check-username",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dev-url}}/{{users-resource-path}}/username/available/hahahaha",
+							"host": [
+								"{{dev-url}}"
+							],
+							"path": [
+								"{{users-resource-path}}",
+								"username",
+								"available",
+								"hahahaha"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"{{$randomUserName}}\",\r\n    \"fullname\": \"{{$randomFullName}}\",\r\n    \"role\": \"{{admin-role-id}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev-url}}/{{users-resource-path}}",
+							"host": [
+								"{{dev-url}}"
+							],
+							"path": [
+								"{{users-resource-path}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{dev-url}}/{{users-resource-path}}/623b1cf1ce9a2780eb7a8a0f",
+							"host": [
+								"{{dev-url}}"
+							],
+							"path": [
+								"{{users-resource-path}}",
+								"623b1cf1ce9a2780eb7a8a0f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change-user-role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"623b1cf1ce9a2780eb7a8a0f\",\r\n    \"role\": \"6233f7954f7e9bd300ab7b6b\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev-url}}/{{users-resource-path}}/change-role",
+							"host": [
+								"{{dev-url}}"
+							],
+							"path": [
+								"{{users-resource-path}}",
+								"change-role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-user-avatar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dev-url}}/{{users-resource-path}}/avatar/{{admin-user-id}}",
+							"host": [
+								"{{dev-url}}"
+							],
+							"path": [
+								"{{users-resource-path}}",
+								"avatar",
+								"{{admin-user-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-permissions",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev-url}}/{{users-resource-path}}/profile/permissions",
+							"host": [
+								"{{dev-url}}"
+							],
+							"path": [
+								"{{users-resource-path}}",
+								"profile",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dev-url}}/{{users-resource-path}}/profile/details",
+							"host": [
+								"{{dev-url}}"
+							],
+							"path": [
+								"{{users-resource-path}}",
+								"profile",
+								"details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev-url}}/{{users-resource-path}}/profile",
+							"host": [
+								"{{dev-url}}"
+							],
+							"path": [
+								"{{users-resource-path}}",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change-avatar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": \";base64,hahahahahahhahahahahahahah\",\r\n    \"filename\": \"haha\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev-url}}/{{users-resource-path}}/profile/avatar",
+							"host": [
+								"{{dev-url}}"
+							],
+							"path": [
+								"{{users-resource-path}}",
+								"profile",
+								"avatar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"{{admin-username}}\",\r\n    \"password\": \"{{admin-pwd}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev-url}}/{{auth-path}}/login",
+							"host": [
+								"{{dev-url}}"
+							],
+							"path": [
+								"{{auth-path}}",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh-token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\": \"{{refreshToken}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev-url}}/{{auth-path}}/refresh",
+							"host": [
+								"{{dev-url}}"
+							],
+							"path": [
+								"{{auth-path}}",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "roles",
+			"item": [
+				{
+					"name": "get",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dev-url}}/{{roles-resource-path}}/6233f7954f7e9bd300ab7b6b",
+							"host": [
+								"{{dev-url}}"
+							],
+							"path": [
+								"{{roles-resource-path}}",
+								"6233f7954f7e9bd300ab7b6b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\": \"\",\r\n    \"pagination\": {\r\n        \"page\": 1,\r\n        \"limit\": 10,\r\n        \"sort\": {\r\n            \"order\": 1,\r\n            \"by\": \"name\"\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev-url}}/{{roles-resource-path}}/find",
+							"host": [
+								"{{dev-url}}"
+							],
+							"path": [
+								"{{roles-resource-path}}",
+								"find"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomWord}}\",\r\n    \"desc\": \"{{$randomJobDescriptor}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev-url}}/{{roles-resource-path}}",
+							"host": [
+								"{{dev-url}}"
+							],
+							"path": [
+								"{{roles-resource-path}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"623b332aa8ad1669a32039d5\",\r\n    \"name\": \"{{$randomWord}}\",\r\n    \"permissions\": {\r\n        \"users\": {\r\n            \"view\": true,\r\n            \"create\": true,\r\n            \"update\": true,\r\n            \"delete\": true\r\n        }\r\n    },\r\n    \"desc\": \"{{$randomLoremParagraph}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev-url}}/{{roles-resource-path}}",
+							"host": [
+								"{{dev-url}}"
+							],
+							"path": [
+								"{{roles-resource-path}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{dev-url}}/{{roles-resource-path}}/623b3349a8ad1669a32039dd",
+							"host": [
+								"{{dev-url}}"
+							],
+							"path": [
+								"{{roles-resource-path}}",
+								"623b3349a8ad1669a32039dd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "set-default",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"roleId\": \"6233f7954f7e9bd300ab7b6b\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev-url}}/{{roles-resource-path}}/role/default",
+							"host": [
+								"{{dev-url}}"
+							],
+							"path": [
+								"{{roles-resource-path}}",
+								"role",
+								"default"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "dev-url",
+			"value": "localhost:55555",
+			"type": "string"
+		},
+		{
+			"key": "accessToken",
+			"value": "accessToken",
+			"type": "string"
+		},
+		{
+			"key": "refreshToken",
+			"value": "refreshToken",
+			"type": "string"
+		},
+		{
+			"key": "auth-path",
+			"value": "auth",
+			"type": "string"
+		},
+		{
+			"key": "admin-username",
+			"value": "admin",
+			"type": "string"
+		},
+		{
+			"key": "admin-pwd",
+			"value": "root",
+			"type": "string"
+		},
+		{
+			"key": "admin-user-id",
+			"value": "6233f7954f7e9bd300ab7b6c",
+			"type": "string"
+		},
+		{
+			"key": "admin-role-id",
+			"value": "admin-role-id",
+			"type": "string"
+		},
+		{
+			"key": "users-resource-path",
+			"value": "api/users",
+			"type": "string"
+		},
+		{
+			"key": "roles-resource-path",
+			"value": "api/roles",
+			"type": "string"
+		}
+	]
+}
