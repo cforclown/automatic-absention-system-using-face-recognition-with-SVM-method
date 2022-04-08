@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:600|Work+Sans:400,500,600,700&display=swap');
+
+#cl-login-page{
+  background: linear-gradient(135deg, #5f27cd 0%, #fdbb2d 100%);
+  font-family: "work sans";
+  font-size: 100%;
+  width: 100vw;
+  height: 100vh;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+
+  .cl-login-form {
+    max-width: 600px;
+    min-width: 400px;
+    max-height: 600px;
+    width: 30%;
+    height: 60%;
+    margin: 100px auto;
+    background-color: #FFFFFF;
+    border-radius: 24px;
+
+    .cl-login-form-header-title {
+      text-align: center;
+      font-family: 'open sans', sans-serif;
+      padding: 2rem 0;
+      margin: 0;
+      font-size: 2rem;
+    }
+  }
+}
+
+.cl-login-form-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+  max-width: 100%;
+}
+    
+.cl-login-form-row input {
+  width: 80%;
+  box-sizing: border-box;
+  border: none;
+  font-size: 1.3rem;
+  padding-left: 1.5rem;
+  padding-bottom: 1rem;
+  box-shadow: inset 0px -3px 0px 0px rgba(187,187,187,0.2);
+  transition: box-shadow 0.2s ease-in;
+}
+.cl-login-form-row input:focus {
+  box-shadow: inset 0px -3px 0px 0px #5f27cdb3;
+  outline: none;
+}
+.cl-login-form-row input::-webkit-input-placeholder{
+  opacity: 1;
+  transition: opacity 0.25s ease-out;
+}
+.cl-login-form-row input:hover::-webkit-input-placeholder, 
+.cl-login-form-row input:focus::-webkit-input-placeholder{
+  opacity: 0;
+}
+
+.cl-login-form-row label {
+  align-self: start;
+  padding-left: 4.5rem;
+  padding-bottom: 0.5rem;
+  color: rgba(187,187,187,0.9);
+}
+
+.cl-login-form-row label.cl-login-form-error-message {
+  color: rgba(255, 0, 0, 0.9) !important;
+}
+
+.cl-login-form-row button {
+  border-radius: 24px;
+  width: 80%;
+  height: 40px;
+  font-size: 1.3rem;
+  color: white;
+  font-weight: 700;
+  background: rgb(34,193,195);
+  background: linear-gradient(135deg, #5f27cd 0%, #fdbb2d 100%);
+  border: 0px;
+  cursor: pointer;
+  transition: opacity 0.25s ease-out;
+}
+.cl-login-form-row button:hover {
+  opacity: 0.8;
+}
+
+.cl-login-form-button {
+  padding-bottom: 1.5rem;
+}

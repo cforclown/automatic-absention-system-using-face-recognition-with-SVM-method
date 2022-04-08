@@ -1,0 +1,13 @@
+#cl-home-content {
+    width: 100%;
+    height: calc(100% - calc(56px + 48px));
+    overflow: visible;
+
+    padding: 0.8rem;
+    @media screen and (max-width: 768px) {
+        padding: 0.6rem;
+    }
+    @media screen and (max-width: 576px) {
+        padding: 0.6rem;
+    }
+}

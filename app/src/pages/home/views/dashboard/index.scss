@@ -1,0 +1,92 @@
+.dashboard-view-container {
+    .dashboard-view-child-20 {
+        display: grid;
+        grid-template-columns: 19% 19% 19% 19% 19%;
+        grid-gap: 0 1%;
+        @media screen and (max-width: 960px) {
+            grid-template-columns: 24% 24% 24% 24%;
+            grid-gap: 0 1%;
+        }
+        @media screen and (max-width: 768px) {
+            grid-template-columns: 32% 32% 32%;
+            grid-gap: 0 2%;
+        }
+        @media screen and (max-width: 576px) {
+            grid-template-columns: 49% 49%;
+            grid-gap: 0 2%;
+        }
+        @media screen and (max-width: 384px) {
+            grid-template-columns: 100%;
+            grid-gap: 0;
+        }
+
+        > div {
+            margin-bottom: 1rem;
+            @media screen and (max-width: 768px) {
+                margin-bottom: 0.6rem;
+            }
+        }
+    }
+    .dashboard-view-child-25 {
+        display: grid;
+        grid-template-columns: 24% 24% 24% 24%;
+        grid-gap: 0 1%;
+        @media screen and (max-width: 768px) {
+            grid-template-columns: 32% 32% 32%;
+            grid-gap: 0 2%;
+        }
+        @media screen and (max-width: 576px) {
+            grid-template-columns: 49% 49%;
+            grid-gap: 0 2%;
+        }
+        @media screen and (max-width: 384px) {
+            grid-template-columns: 100%;
+            grid-gap: 0;
+        }
+
+        > div {
+            margin-bottom: 1rem;
+            @media screen and (max-width: 768px) {
+                margin-bottom: 0.6rem;
+            }
+        }
+    }
+    .dashboard-view-child-33 {
+        display: grid;
+        grid-template-columns: 32% 32% 32%;
+        grid-gap: 0 1.5%;
+        @media screen and (max-width: 768px) {
+            grid-template-columns: 49% 49%;
+            grid-gap: 0 2%;
+        }
+        @media screen and (max-width: 576px) {
+            grid-template-columns: 100%;
+            grid-gap: 0;
+        }
+
+        > div {
+            margin-bottom: 1rem;
+            @media screen and (max-width: 768px) {
+                margin-bottom: 0.6rem;
+            }
+        }
+    }
+    .dashboard-view-child-50 {
+        display: grid;
+        grid-template-columns: 49% 49%;
+        grid-gap: 1%;
+        @media screen and (max-width: 768px) {
+            grid-template-columns: 100%;
+        }
+
+        > div {
+            margin-bottom: 1rem;
+            @media screen and (max-width: 768px) {
+                margin-bottom: 0.6rem;
+            }
+        }
+    }
+    .dashboard-view-child-100 {
+        width: 100%;
+    }
+}

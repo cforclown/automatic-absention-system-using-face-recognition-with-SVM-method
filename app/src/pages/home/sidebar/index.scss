@@ -1,0 +1,37 @@
+@import "~react-pro-sidebar/dist/scss/styles.scss";
+
+$submenu-bg-color: rgba(
+    $color: #57606f,
+    $alpha: 0.25,
+);
+// $highlight-color: #f53b57 !default;
+$menu-item-active-color: #f53b57;
+
+#cl-home-sidebar {
+    height: 100%;
+
+    box-shadow: 1px 3px 6px rgba($color: #131a22, $alpha: 0.25);
+
+    .pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu .pro-inner-list-item .pro-inner-item::before {
+        content: none !important;
+    }
+    .pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item {
+        background-color: $submenu-bg-color;
+    }
+    .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:hover {
+        color: $menu-item-active-color;
+    }
+    .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:focus {
+        color: $menu-item-active-color;
+    }
+    .pro-sidebar .pro-menu .pro-menu-item.active {
+        color: $menu-item-active-color;
+    }
+
+    .cl-home-sidebar-menu-divider {
+        height: 20px;
+    }
+}
+#cl-home-sidebar.cl-home-sidebar-hidden {
+    display: none;
+}

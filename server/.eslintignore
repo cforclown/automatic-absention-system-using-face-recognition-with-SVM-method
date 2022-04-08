@@ -1,0 +1,5 @@
+src/swagger/*
+dist/*
+build/*
+jestSetup.json
+*.json

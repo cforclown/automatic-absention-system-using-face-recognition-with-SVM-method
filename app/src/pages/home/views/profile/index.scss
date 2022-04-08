@@ -1,0 +1,34 @@
+#cl-profile {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+
+  label {
+    margin-top: 18px;
+    color: #ff3838;
+  }
+
+  * {
+    margin-top: 8px;
+  }
+
+  .cl-profile-avatar {
+    margin-bottom: 24px;
+    position: relative;
+
+    .cl-profile-avatar-change-btn {
+      position: absolute;
+      bottom: -6px;
+      right: -6px;
+    }
+
+    .cl-profile-avatar-change-btn>button {
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+    }
+  }
+}

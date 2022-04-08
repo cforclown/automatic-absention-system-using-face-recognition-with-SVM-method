@@ -1,0 +1,143 @@
+{
+  "login": {
+    "type": "object",
+    "properties": {
+      "username": {
+        "type": "string"
+      },
+      "password": {
+        "type": "string"
+      }
+    }
+  },
+  "refreshToken": {
+    "type": "object",
+    "properties": {
+      "refreshToken": {
+        "type": "string"
+      }
+    }
+  },
+  "createUser": {
+    "type": "object",
+    "properties": {
+      "username": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string",
+        "default": null
+      },
+      "fullname": {
+        "type": "string"
+      },
+      "role": {
+        "type": "string"
+      }
+    }
+  },
+  "updateUser": {
+    "type": "object",
+    "properties": {
+      "_id": {
+        "type": "string"
+      },
+      "username": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string",
+        "default": null
+      },
+      "fullname": {
+        "type": "string"
+      },
+      "role": {
+        "type": "string"
+      }
+    }
+  },
+  "updateUserProfile": {
+    "type": "object",
+    "properties": {
+      "username": {
+        "type": "string",
+        "default": null
+      },
+      "email": {
+        "type": "string",
+        "default": null
+      },
+      "fullname": {
+        "type": "string",
+        "default": null
+      },
+      "role": {
+        "type": "string",
+        "default": null
+      }
+    }
+  },
+  "changeAvatar": {
+    "type": "object",
+    "properties": {
+      "filename": {
+        "type": "string"
+      },
+      "data": {
+        "type": "string"
+      }
+    }
+  },
+  "roleData": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "masterData": {
+        "type": "object",
+        "properties": {
+          "view": {
+            "type": "boolean",
+            "default": false
+          },
+          "create": {
+            "type": "boolean",
+            "default": false
+          },
+          "update": {
+            "type": "boolean",
+            "default": false
+          },
+          "delete": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "user": {
+        "type": "object",
+        "properties": {
+          "view": {
+            "type": "boolean",
+            "default": true
+          },
+          "create": {
+            "type": "boolean",
+            "default": false
+          },
+          "update": {
+            "type": "boolean",
+            "default": false
+          },
+          "delete": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      }
+    }
+  },
+  "findRoles": {}
+}

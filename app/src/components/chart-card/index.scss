@@ -1,0 +1,31 @@
+.cl-chart-card {
+    position: relative;
+    color: #747d8c;
+
+    .cl-chart-card-title {
+        position: absolute;
+        left: 0;
+        top: 12px;
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .cl-chart-card-value {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-family: "Quicksand";
+        font-size: 1.6rem;
+        color: #57606f;
+    }
+}

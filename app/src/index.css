@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css?family=Exo:400,700");
+@import url("https://fonts.googleapis.com/css?family=Quicksand:bold");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    /* font-family: "Exo"; */
+    font-family: "Exo" !important;
+    overflow: hidden;
+}

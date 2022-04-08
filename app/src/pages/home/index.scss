@@ -1,0 +1,55 @@
+#cl-home {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    height: 100vh;
+    overflow: hidden;
+
+    background-color: #ddddff;
+
+    #cl-home-sidebar-wrapper {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+
+        @media screen and (max-width: 576px) {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+
+            display: none;
+        }
+
+        .cl-home-sidebar-overlay {
+            display: none;
+        }
+    }
+    #cl-home-sidebar-wrapper.cl-home-sidebar-wrapper-show {
+        @media screen and (max-width: 576px) {
+            display: flex;
+            flex-direction: row;
+            z-index: 100;
+        }
+        .cl-home-sidebar-overlay {
+            display: flex;
+            flex-grow: 10;
+            background-color: rgba($color: black, $alpha: 0.5);
+        }
+    }
+
+    .cl-home-wrapper {
+        position: relative;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+
+        width: 100%;
+    }
+}

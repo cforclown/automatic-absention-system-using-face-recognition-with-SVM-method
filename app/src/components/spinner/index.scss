@@ -1,0 +1,95 @@
+$spinner-primary-color: #f53b57;
+$spinner-info-color: #008cff;
+$spinner-secondary-color: #8b8b8b;
+$spinner-warning-color: #fffb00;
+$spinner-danger-color: #ff0000;
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+.spinner-sm {
+    width: 28px !important;
+    height: 28px !important;
+}
+.spinner-md {
+    width: 80px !important;
+    height: 80px !important;
+}
+.spinner-lg {
+    width: 120px !important;
+    height: 120px !important;
+}
+
+.double-bounce1,
+.double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: $spinner-primary-color;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-animation: sk-bounce 2s infinite ease-in-out;
+    animation: sk-bounce 2s infinite ease-in-out;
+}
+
+.spinner-primary > .double-bounce1 {
+    background-color: $spinner-primary-color;
+}
+.spinner-primary > .double-bounce2 {
+    background-color: $spinner-primary-color;
+}
+.spinner-info > .double-bounce1 {
+    background-color: $spinner-info-color;
+}
+.spinner-info > .double-bounce2 {
+    background-color: $spinner-info-color;
+}
+.spinner-secondary > .double-bounce1 {
+    background-color: $spinner-secondary-color;
+}
+.spinner-secondary > .double-bounce2 {
+    background-color: $spinner-secondary-color;
+}
+.spinner-warning > .double-bounce1 {
+    background-color: $spinner-warning-color;
+}
+.spinner-warning > .double-bounce2 {
+    background-color: $spinner-warning-color;
+}
+.spinner-danger > .double-bounce1 {
+    background-color: $spinner-danger-color;
+}
+.spinner-danger > .double-bounce2 {
+    background-color: $spinner-danger-color;
+}
+
+.double-bounce2 {
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+}
+
+@-webkit-keyframes sk-bounce {
+    0%,
+    100% {
+        -webkit-transform: scale(0);
+    }
+    50% {
+        -webkit-transform: scale(1);
+    }
+}
+
+@keyframes sk-bounce {
+    0%,
+    100% {
+        transform: scale(0);
+        -webkit-transform: scale(0);
+    }
+    50% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+}
