@@ -7,6 +7,10 @@ import {
   RolesDao,
   RolesRouter,
   RolesService,
+  StudentsController,
+  StudentsDao,
+  StudentsRouter,
+  StudentsService,
   UsersController,
   UsersDao,
   UsersRouter,
@@ -29,6 +33,10 @@ export function setup (): void {
     rolesRouter: asFunction(RolesRouter),
     rolesController: asClass(RolesController),
     rolesService: asClass(RolesService),
-    rolesDao: asClass(RolesDao)
+    rolesDao: asClass(RolesDao),
+    studentsRouter: asFunction(StudentsRouter),
+    studentsController: asClass(StudentsController),
+    studentsService: asClass(StudentsService),
+    studentsDao: asClass(StudentsDao)
   });
 }

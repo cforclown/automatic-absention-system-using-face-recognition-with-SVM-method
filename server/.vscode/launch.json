@@ -193,6 +193,22 @@
       "internalConsoleOptions": "neverOpen"
     },
     {
+      "name": "debug-test-students-resource",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": [
+        "--inspect-brk",
+        "${workspaceRoot}/node_modules/jest/bin/jest.js",
+        "--runInBand",
+        "--testPathPattern=src/resources/students",
+        "--coverage",
+        "false",
+        "--verbose"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
       "name": "debug-current-test-file",
       "type": "node",
       "request": "launch",

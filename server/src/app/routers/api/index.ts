@@ -7,6 +7,7 @@ export function ApiRouter (): Router {
   router.use(authenticateRequest(['/api/users/avatar']));
   router.use('/users', container.resolve('usersRouter'));
   router.use('/roles', container.resolve('rolesRouter'));
+  router.use('/students', container.resolve('studentsRouter'));
 
   return router;
 }

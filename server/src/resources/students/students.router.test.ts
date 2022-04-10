@@ -3,7 +3,7 @@ import request from 'supertest';
 import { setup } from '../../di-config';
 import App from '../../app';
 import { MockMongooseModel } from '../../../__mock__';
-import { CreateRolePayload, FindRolesPayload, Role } from './roles.types';
+import { CreateStudentPayload, FindStudentsPayload, Student } from './students.types';
 import { HttpCodes } from '../../exceptions';
 import { SortOrder } from '../../types';
 import { User } from '../users';
@@ -20,18 +20,18 @@ jest.mock('mongoose', () => ({
   model: jest.fn().mockImplementation((collection: string): string => mockModel(collection))
 }));
 
-export function expectCorrectRole (value: Record<string, any>, source: Role): void {
+export function expectCorrectStudent (value: Record<string, any>, source: Student): void {
   expect(value).toHaveProperty('_id');
   expect(value._id).toEqual(source._id);
-  expect(value).toHaveProperty('name');
-  expect(value.name).toEqual(source.name);
-  expect(value).toHaveProperty('permissions');
-  expect(value.permissions).toEqual(source.permissions);
-  expect(value).toHaveProperty('desc');
-  expect(value.desc).toEqual(source.desc);
+  expect(value).toHaveProperty('fullname');
+  expect(value.fullname).toEqual(source.fullname);
+  expect(value).toHaveProperty('nim');
+  expect(value.nim).toEqual(source.nim);
+  expect(value).toHaveProperty('dateOfBirth');
+  expect(value.dateOfBirth).toEqual(source.dateOfBirth);
 }
 
-describe('roles-router', () => {
+describe('students-router', () => {
   let app: any;
 
   const mockUserAdmin: User = {
@@ -58,69 +58,30 @@ describe('roles-router', () => {
       desc: ''
     }
   };
-  const mockRole1: Role = {
+  const mockStudent1: Student = {
     _id: 'id-1',
-    name: 'name-1',
-    permissions: {
-      users: {
-        view: true,
-        create: false,
-        update: false,
-        delete: false
-      },
-      masterData: {
-        view: true,
-        create: false,
-        update: false,
-        delete: false
-      }
-    },
-    desc: 'desc'
+    fullname: 'fullname-1',
+    nim: 'nim-1',
+    dateOfBirth: '1-1-1900'
   };
-  const mockRole2: Role = {
+  const mockStudent2: Student = {
     _id: 'id-2',
-    name: 'name-2',
-    permissions: {
-      users: {
-        view: true,
-        create: false,
-        update: false,
-        delete: false
-      },
-      masterData: {
-        view: true,
-        create: false,
-        update: false,
-        delete: false
-      }
-    },
-    desc: 'desc'
+    fullname: 'fullname-2',
+    nim: 'nim-2',
+    dateOfBirth: '1-1-1900'
   };
-  const mockCreateRolePayload: CreateRolePayload = {
-    name: 'name',
-    permissions: {
-      users: {
-        view: true,
-        create: false,
-        update: false,
-        delete: false
-      },
-      masterData: {
-        view: true,
-        create: false,
-        update: false,
-        delete: false
-      }
-    },
-    desc: 'desc'
+  const mockCreateStudentPayload: CreateStudentPayload = {
+    fullname: 'fullname',
+    nim: 'nim',
+    dateOfBirth: '1-1-1900'
   };
 
-  when(mockModel).calledWith('roles').mockReturnValue(MockMongooseModel);
+  when(mockModel).calledWith('students').mockReturnValue(MockMongooseModel);
   MockMongooseModel.mockFindOne.mockImplementation(() => ({
     exec: (payload: any): void => MockMongooseModel.mockExec(payload)
   }));
-  MockMongooseModel.mockExec.mockReturnValue(Promise.resolve(mockRole1));
-  MockMongooseModel.mockCreate.mockReturnValue(Promise.resolve(mockRole1));
+  MockMongooseModel.mockExec.mockReturnValue(Promise.resolve(mockStudent1));
+  MockMongooseModel.mockCreate.mockReturnValue(Promise.resolve(mockStudent1));
 
   mockJWTVerify.mockReturnValue(mockUserAdmin);
 
@@ -138,36 +99,36 @@ describe('roles-router', () => {
       jest.clearAllMocks();
     });
 
-    it('should successfully return role', async () => {
+    it('should successfully return student', async () => {
       const response = await request(app)
-        .get(`/api/roles/${mockRole1._id}`)
+        .get(`/api/students/${mockStudent1._id}`)
         .set({ Authorization: 'Bearer fake-access-token' })
         .expect(HttpCodes.Ok);
 
       expect(response).toHaveProperty('text');
       const body = JSON.parse(response.text);
       expect(body).toHaveProperty('data');
-      expectCorrectRole(body.data, mockRole1);
+      expectCorrectStudent(body.data, mockStudent1);
     });
 
-    it('should return 404 when role not found', async () => {
+    it('should return 404 when student not found', async () => {
       MockMongooseModel.mockExec.mockReturnValueOnce(Promise.resolve(null));
       await request(app)
-        .get(`/api/roles/${mockRole1._id}`)
+        .get(`/api/students/${mockStudent1._id}`)
         .set({ Authorization: 'Bearer fake-access-token' })
         .expect(HttpCodes.NotFound);
     });
   });
 
   describe('find', () => {
-    const mockFindUsersPayload: FindRolesPayload = {
+    const mockFindUsersPayload: FindStudentsPayload = {
       query: 'query',
       pagination: {
         page: 1,
         limit: 10,
         sort: {
           order: SortOrder.ASC,
-          by: 'name'
+          by: 'fullname'
         }
       }
     };
@@ -180,7 +141,7 @@ describe('roles-router', () => {
         metadata: [{
           total: 2
         }],
-        data: [mockRole1, mockRole2]
+        data: [mockStudent1, mockStudent2]
       }]));
     });
 
@@ -190,7 +151,7 @@ describe('roles-router', () => {
 
     it('should successfully find users', async () => {
       const response = await request(app)
-        .post('/api/roles/find')
+        .post('/api/students/find')
         .set({ Authorization: 'Bearer fake-access-token' })
         .send(mockFindUsersPayload)
         .expect(HttpCodes.Ok);
@@ -204,8 +165,8 @@ describe('roles-router', () => {
           pageCount: 1
         },
         data: [
-          mockRole1,
-          mockRole2
+          mockStudent1,
+          mockStudent2
         ]
       });
     });
@@ -219,7 +180,7 @@ describe('roles-router', () => {
       }]));
 
       const response = await request(app)
-        .post('/api/roles/find')
+        .post('/api/students/find')
         .set({ Authorization: 'Bearer fake-access-token' })
         .send(mockFindUsersPayload)
         .expect(HttpCodes.Ok);
@@ -240,7 +201,7 @@ describe('roles-router', () => {
       MockMongooseModel.mockExec.mockRejectedValueOnce(new Error('error'));
 
       await request(app)
-        .post('/api/roles/find')
+        .post('/api/students/find')
         .set({ Authorization: 'Bearer fake-access-token' })
         .send(mockFindUsersPayload)
         .expect(HttpCodes.Internal);
@@ -252,25 +213,25 @@ describe('roles-router', () => {
       jest.clearAllMocks();
     });
 
-    it('should successfully create a role', async () => {
+    it('should successfully create a student', async () => {
       const response = await request(app)
-        .post('/api/roles')
+        .post('/api/students')
         .set({ Authorization: 'Bearer fake-access-token' })
-        .send(mockCreateRolePayload)
+        .send(mockCreateStudentPayload)
         .expect(HttpCodes.Ok);
       expect(response).toHaveProperty('text');
       const body = JSON.parse(response.text);
       expect(body).toHaveProperty('data');
-      expectCorrectRole(body.data, mockRole1);
+      expectCorrectStudent(body.data, mockStudent1);
     });
 
-    it('should fail create role when role id is not valid', async () => {
+    it('should fail create student when student id is not valid', async () => {
       MockMongooseModel.mockCreate.mockRejectedValueOnce(new Error('error'));
 
       const response = await request(app)
-        .post('/api/roles')
+        .post('/api/students')
         .set({ Authorization: 'Bearer fake-access-token' })
-        .send(mockCreateRolePayload)
+        .send(mockCreateStudentPayload)
         .expect(HttpCodes.Internal);
       expect(response).toHaveProperty('text');
       const body = JSON.parse(response.text);
@@ -281,54 +242,66 @@ describe('roles-router', () => {
 
   describe('update', () => {
     beforeEach(() => {
-      MockMongooseModel.mockFindOneAndUpdate.mockImplementation(() => ({
+      MockMongooseModel.mockFindOne.mockImplementation(() => ({
         exec: (payload: any): void => MockMongooseModel.mockExec(payload)
       }));
-      MockMongooseModel.mockExec.mockReturnValue(Promise.resolve(mockRole1));
+      MockMongooseModel.mockExec.mockReturnValue(Promise.resolve({
+        ...mockStudent1,
+        save: async () => Promise.resolve()
+      }));
     });
 
     afterEach(() => {
       jest.clearAllMocks();
     });
 
-    it('should successfully update a role', async () => {
+    it('should successfully update a student', async () => {
       const response = await request(app)
-        .put('/api/roles')
+        .put('/api/students')
         .set({ Authorization: 'Bearer fake-access-token' })
         .send({
-          _id: mockRole1._id,
-          name: 'new-name',
-          permissions: {
-            users: {
-              view: true,
-              create: true,
-              update: true,
-              delete: true
-            },
-            masterData: {
-              view: true,
-              create: true,
-              update: true,
-              delete: true
-            }
-          },
-          desc: 'new-dateOfBirth'
+          _id: mockStudent1._id,
+          fullname: 'new-fullname',
+          nim: 'new-nim',
+          dateOfBirth: 'new-dateOfBirth'
         })
         .expect(HttpCodes.Ok);
       expect(response).toHaveProperty('text');
       const body = JSON.parse(response.text);
       expect(body).toHaveProperty('data');
-      expectCorrectRole(body.data, mockRole1);
+      expectCorrectStudent(body.data, {
+        _id: mockStudent1._id,
+        fullname: 'new-fullname',
+        nim: 'new-nim',
+        dateOfBirth: 'new-dateOfBirth'
+      });
     });
 
-    it('should fail update a role when only name is provided', async () => {
+    it('should successfully update a student when only fullname provided', async () => {
       const response = await request(app)
-        .put('/api/roles')
+        .put('/api/students')
         .set({ Authorization: 'Bearer fake-access-token' })
         .send({
-          _id: mockRole1._id,
+          _id: mockStudent1._id,
           fullname: 'new-fullname'
         })
+        .expect(HttpCodes.Ok);
+      expect(response).toHaveProperty('text');
+      const body = JSON.parse(response.text);
+      expect(body).toHaveProperty('data');
+      expectCorrectStudent(body.data, {
+        ...mockStudent1,
+        fullname: 'new-fullname'
+      });
+    });
+
+    it('should fail update student when student id is not valid', async () => {
+      MockMongooseModel.mockExec.mockReturnValue(Promise.resolve(null));
+
+      const response = await request(app)
+        .put('/api/students')
+        .set({ Authorization: 'Bearer fake-access-token' })
+        .send(mockCreateStudentPayload)
         .expect(HttpCodes.BadRequest);
       expect(response).toHaveProperty('text');
       const body = JSON.parse(response.text);
@@ -336,25 +309,11 @@ describe('roles-router', () => {
       expect(body.data).toEqual(null);
     });
 
-    it('should fail update role when role not found', async () => {
-      MockMongooseModel.mockExec.mockReturnValueOnce(Promise.resolve(null));
-
+    it('should fail update student when only id is provided', async () => {
       const response = await request(app)
-        .put('/api/roles')
+        .put('/api/students')
         .set({ Authorization: 'Bearer fake-access-token' })
-        .send(mockCreateRolePayload)
-        .expect(HttpCodes.BadRequest);
-      expect(response).toHaveProperty('text');
-      const body = JSON.parse(response.text);
-      expect(body).toHaveProperty('data');
-      expect(body.data).toEqual(null);
-    });
-
-    it('should fail update role when only id is provided', async () => {
-      const response = await request(app)
-        .put('/api/roles')
-        .set({ Authorization: 'Bearer fake-access-token' })
-        .send({ _id: mockRole1._id })
+        .send({ _id: mockStudent1._id })
         .expect(HttpCodes.BadRequest);
       expect(response).toHaveProperty('text');
       const body = JSON.parse(response.text);
@@ -368,29 +327,29 @@ describe('roles-router', () => {
       MockMongooseModel.mockFindOneAndUpdate.mockImplementation(() => ({
         exec: (payload: any): void => MockMongooseModel.mockExec(payload)
       }));
-      MockMongooseModel.mockExec.mockReturnValue(Promise.resolve(mockRole1));
+      MockMongooseModel.mockExec.mockReturnValue(Promise.resolve(mockStudent1));
     });
 
     afterEach(() => {
       jest.clearAllMocks();
     });
 
-    it('should successfully delete a role', async () => {
+    it('should successfully delete a student', async () => {
       const response = await request(app)
-        .delete('/api/roles/' + mockRole1._id)
+        .delete('/api/students/' + mockStudent1._id)
         .set({ Authorization: 'Bearer fake-access-token' })
         .expect(HttpCodes.Ok);
       expect(response).toHaveProperty('text');
       const body = JSON.parse(response.text);
       expect(body).toHaveProperty('data');
-      expect(body.data).toEqual(mockRole1);
+      expect(body.data).toEqual(mockStudent1);
     });
 
-    it('should fail delete role when role is not valid', async () => {
+    it('should fail delete student when role is not valid', async () => {
       MockMongooseModel.mockExec.mockReturnValue(Promise.resolve(null));
 
       const response = await request(app)
-        .delete('/api/roles/' + mockRole1._id)
+        .delete('/api/students/' + mockStudent1._id)
         .set({ Authorization: 'Bearer fake-access-token' })
         .expect(HttpCodes.BadRequest);
       expect(response).toHaveProperty('text');

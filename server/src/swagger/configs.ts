@@ -1,4 +1,4 @@
-import Schemas from './schemas.json';
+import Schemas from './schemas';
 
 export default {
   definition: {
@@ -10,8 +10,8 @@ export default {
       contact: {
         name: 'Hafis Alrizal',
         url: 'https://hafisalrizal.com',
-        email: 'hafisalrizal@gmail.com',
-      },
+        email: 'hafisalrizal@gmail.com'
+      }
     },
     consumes: ['application/json'],
     produces: ['application/json'],
@@ -22,20 +22,20 @@ export default {
         Bearer: {
           type: 'apiKey',
           name: 'Authorization',
-          in: 'header',
-        },
-      },
+          in: 'header'
+        }
+      }
     },
     securityDefinitions: {
       Bearer: {
         type: 'apiKey',
         name: 'Authorization',
-        in: 'header',
-      },
+        in: 'header'
+      }
     },
     security: {
-      Bearer: [],
-    },
+      Bearer: []
+    }
   },
-  apis: ['./src/resources/**/*.ts'],
+  apis: ['./src/resources/**/*.ts']
 };

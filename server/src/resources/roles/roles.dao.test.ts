@@ -47,7 +47,7 @@ describe('roles-dao', () => {
     },
     desc: 'desc'
   };
-  const findRolesPayload: FindRolesPayload = {
+  const mockFindRolesPayload: FindRolesPayload = {
     query: '',
     pagination: {
       page: 1,
@@ -58,7 +58,7 @@ describe('roles-dao', () => {
       }
     }
   };
-  const createRolePayload: CreateRolePayload = {
+  const mockCreateRolePayload: CreateRolePayload = {
     name: 'name',
     permissions: {
       users: {
@@ -122,9 +122,9 @@ describe('roles-dao', () => {
 
   describe('find', () => {
     const expectedRoles = {
-      ...findRolesPayload,
+      ...mockFindRolesPayload,
       pagination: {
-        ...findRolesPayload.pagination,
+        ...mockFindRolesPayload.pagination,
         pageCount: 1
       },
       data: [mockRole1, mockRole2]
@@ -147,7 +147,7 @@ describe('roles-dao', () => {
     });
 
     it('should successfully find roles', async () => {
-      const roles = await rolesDao.find(findRolesPayload);
+      const roles = await rolesDao.find(mockFindRolesPayload);
       expect(MockMongooseModel.mockAggregate).toHaveBeenCalled();
       expect(roles).toEqual(expectedRoles);
     });
@@ -157,12 +157,12 @@ describe('roles-dao', () => {
         metadata: [],
         data: []
       }]));
-      const roles = await rolesDao.find(findRolesPayload);
+      const roles = await rolesDao.find(mockFindRolesPayload);
       expect(MockMongooseModel.mockAggregate).toHaveBeenCalled();
       expect(roles).toEqual({
-        ...findRolesPayload,
+        ...mockFindRolesPayload,
         pagination: {
-          ...findRolesPayload.pagination,
+          ...mockFindRolesPayload.pagination,
           pageCount: 0
         },
         data: []
@@ -171,7 +171,7 @@ describe('roles-dao', () => {
 
     it('should throw an error when model.aggregate throw an error', async () => {
       MockMongooseModel.mockExec.mockRejectedValueOnce(new RestApiException('not found'));
-      await expect(rolesDao.find(findRolesPayload)).rejects.toThrow(RestApiException);
+      await expect(rolesDao.find(mockFindRolesPayload)).rejects.toThrow(RestApiException);
     });
   });
 
@@ -181,14 +181,14 @@ describe('roles-dao', () => {
     });
 
     it('should successfully create an role', async () => {
-      const role = await rolesDao.create(createRolePayload);
+      const role = await rolesDao.create(mockCreateRolePayload);
       expect(MockMongooseModel.mockCreate).toHaveBeenCalled();
       expect(role).toEqual(mockRole1);
     });
 
     it('should throw an error when document.save throw an error', async () => {
       MockMongooseModel.mockCreate.mockRejectedValueOnce(new Error());
-      await expect(rolesDao.create(createRolePayload)).rejects.toThrowError();
+      await expect(rolesDao.create(mockCreateRolePayload)).rejects.toThrowError();
     });
   });
 

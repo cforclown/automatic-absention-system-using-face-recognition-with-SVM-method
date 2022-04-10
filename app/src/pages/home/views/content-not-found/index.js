@@ -1,7 +1,11 @@
-import React from "react";
+import React from 'react';
 
-function ContentNotFound() {
-    return <div>CONTENT NOT FOUND</div>;
-}
+const ContentNotFound = () => {
+  return (
+    <div>
+      <h5>CONTENT NOT FOUND</h5>
+    </div>
+  );
+};
 
 export default ContentNotFound;

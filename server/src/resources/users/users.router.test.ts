@@ -85,7 +85,7 @@ describe('users-router', () => {
     expect(value.role).toEqual(source.role);
   }
 
-  beforeEach(() => {
+  beforeAll(() => {
     setup();
     app = App();
   });

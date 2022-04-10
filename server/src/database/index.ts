@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { Environment } from '../common';
-import { RolesModel, UsersModel } from '../resources';
+import { RolesModel, StudentsModel, UsersModel } from '../resources';
 
 class Database {
   constructor () {
@@ -20,6 +20,7 @@ class Database {
   registerModels (): void {
     mongoose.model('users', UsersModel);
     mongoose.model('roles', RolesModel);
+    mongoose.model('students', StudentsModel);
   }
 }
 

@@ -5,3 +5,4 @@ export * from './roles.dao';
 export * from './roles.dto';
 export * from './roles.types';
 export * from './roles.model';
+export * from './roles.swagger-schemas';

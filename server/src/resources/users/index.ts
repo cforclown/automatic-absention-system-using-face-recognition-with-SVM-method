@@ -5,3 +5,4 @@ export * from './users.dao';
 export * from './users.dto';
 export * from './users.types';
 export * from './users.model';
+export * from './users.swagger-schemas';

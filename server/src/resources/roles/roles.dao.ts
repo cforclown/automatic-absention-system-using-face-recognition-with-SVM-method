@@ -60,8 +60,7 @@ export class RolesDao {
   }
 
   async create (payload: CreateRolePayload): Promise<Role> {
-    const roleDoc = await this.rolesModel.create(payload);
-    return roleDoc;
+    return this.rolesModel.create(payload);
   }
 
   async update (payload: Role): Promise<Role> {

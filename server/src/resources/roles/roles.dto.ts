@@ -31,6 +31,10 @@ export const RoleSchema = Joi.object({
   desc: Joi.string()
 });
 
+export const CreateRolePayloadSchema = RoleSchema.keys({
+  _id: Joi.forbidden()
+});
+
 export const UpdateRoleSchema = Joi.object({
   _id: Joi.string().required(),
   name: Joi.string(),
@@ -43,8 +47,4 @@ export const UpdateRoleSchema = Joi.object({
 
 export const RoleIdSchema = Joi.object({
   roleId: Joi.string().required()
-});
-
-export const CreateRolePayloadSchema = RoleSchema.keys({
-  _id: Joi.forbidden()
 });
