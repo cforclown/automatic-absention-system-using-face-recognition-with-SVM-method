@@ -20,11 +20,11 @@ const handleResponse = async (res) => {
 };
 
 const refactorParams = (params) => Object.assign(
-  {}, 
+  {},
   params ?? {
     method: 'GET',
   },
-  { 
+  {
     headers: {
       Authorization: session ? `Bearer ${session.accessToken}` : null,
       'content-type': 'application/json',
@@ -33,14 +33,14 @@ const refactorParams = (params) => Object.assign(
 );
 
 export async function apiRequest(query, params, throw401 = false) {
-  try{
+  try {
     params = refactorParams(params);
     const res = await fetch(apiURL + query, params);
     if (!res.ok && res.status === 401 && !throw401 && session) {
       session = await refreshSession();
       return apiRequest(query, params, true);
     }
-  
+
     return handleResponse(res);
   } catch (err) {
     console.log(err.message);
@@ -48,7 +48,7 @@ export async function apiRequest(query, params, throw401 = false) {
   }
 }
 
-export async function authRequest(query, params) {
+export async function authRequest(query, params = null) {
   params = refactorParams(params);
   const res = await fetch(authURL + query, params);
 
@@ -74,7 +74,9 @@ export function getPermissions() {
 }
 
 export async function logout() {
-  await authRequest('/logout', null);
+  await authRequest('/logout', {
+    method: 'DELETE'
+  });
 }
 
 export async function refreshSession() {

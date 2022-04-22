@@ -23,7 +23,7 @@ const normalizeValidationErrors = (validationError) => {
     }, {});
     return errors;
   } catch (err) {
-    console.log(err.message);
+    console.error(err.message);
     return {
       internal: err.message,
     };

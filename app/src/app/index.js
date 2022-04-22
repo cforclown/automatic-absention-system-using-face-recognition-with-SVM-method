@@ -1,26 +1,26 @@
-import React,  { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Switch , Route , withRouter } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
-import Cookies from "universal-cookie";
 import { Loader } from "../components/loader";
 import { SetSession } from "../reducer/actions";
+import { getSession } from "../utils/session-manager";
 import "./index.scss";
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-base-table/styles.css';
 
 
 const Login = React.lazy(() => import("../pages/auth/login"));
 const Home = React.lazy(() => import("../pages/home"));
+const Scan = React.lazy(() => import("../pages/scan"));
 const Page4xx = React.lazy(() => import("../pages/4xx"));
 const Page5xx = React.lazy(() => import("../pages/4xx"));
 
-const cookies = new Cookies();
-
 function App(props) {
   //#region COMPONENT STATEs
-  const isMounted=useRef(false);
-  
+  const isMounted = useRef(false);
+
   const dispatch = useDispatch();
   const session = useSelector(state => state.session);
 
@@ -28,22 +28,22 @@ function App(props) {
     isLoading: false,
     isError: false,
   });
-  function setState(newState){
-    if(!isMounted.current) return;
+  function setState(newState) {
+    if (!isMounted.current) return;
     _setState(newState);
   }
   //#endregion
 
   //#region DIDMOUNT
   useEffect(async () => {
-    isMounted.current=true;
+    isMounted.current = true;
 
     if (!session) {
-      const sessionCookie = cookies.get(process.env.SESSION_TAG);
+      const sessionCookie = getSession();
       if (sessionCookie) {
         try {
-          dispatch(SetSession(sessionCookie))
-          setState({ ...state, isLoading: false, isError:false });
+          dispatch(SetSession(sessionCookie));
+          setState({ ...state, isLoading: false, isError: false });
         }
         catch (error) {
           toast.error(error.message);
@@ -64,16 +64,16 @@ function App(props) {
         });
       }
     }
-    else{
+    else {
       setState({ ...state, isLoading: false });
     }
 
     // UNMOUNT
-    return ()=>{ isMounted.current=false; }
+    return () => { isMounted.current = false; };
   }, []);
   //#endregion
 
-  if (state.isLoading){
+  if (state.isLoading) {
     return Loader;
   }
 
@@ -84,6 +84,7 @@ function App(props) {
           <Route exact path="/login" name="Login" render={(props) => <Login {...props} />} />
           <Route exact path="/404" name="404" render={(props) => <Page4xx {...props} />} />
           <Route exact path="/500" name="500" render={(props) => <Page5xx {...props} />} />
+          <Route path="/scan" name="Scan" render={(props) => <Scan {...props} />} />
           <Route path="/" name="Dashboard" render={(props) => <Home {...props} />} />
         </Switch>
       </React.Suspense>

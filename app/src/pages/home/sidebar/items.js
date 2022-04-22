@@ -5,14 +5,9 @@ const content = [
     icon: ["fas", "chart-pie"],
   },
   {
-    title: "Attendence",
-    pathname: "/attendence",
-    icon: ["fas", "exclamation-circle"],
-  },
-  {
-    title: "Attendence",
-    pathname: "/attendence",
-    icon: ["fas", "exclamation-circle"],
+    title: "Students",
+    pathname: "/students",
+    icon: ["fas", "users"],
     permission: {
       data: 'view'
     }
@@ -25,7 +20,22 @@ const content = [
     pathname: "/master-data",
     icon: ["fas", "database"],
     items: [
-
+      {
+        title: "Users",
+        pathname: "/master-data/users",
+        icon: ["fas", "users-cog"],
+        permission: {
+          masterData: 'view'
+        }
+      },
+      {
+        title: "Roles",
+        pathname: "/master-data/roles",
+        icon: ["fas", "exclamation-circle"],
+        permission: {
+          masterData: 'view'
+        }
+      },
     ]
   },
 ];

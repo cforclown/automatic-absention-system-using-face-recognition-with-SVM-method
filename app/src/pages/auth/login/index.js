@@ -17,17 +17,17 @@ const LoginSchema = yup.object({
 });
 
 function Login({ history }) {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
 
-  async function onSubmit(values){
-    try{
-        const tokenData=await login(values.username, values.password);
-        dispatch(SetSession(tokenData));
+  async function onSubmit(values) {
+    try {
+      const tokenData = await login(values.username, values.password);
+      dispatch(SetSession(tokenData));
 
-        history.push('/');
+      history.push('/');
     }
-    catch(err){
-        toast.error(err.message);
+    catch (err) {
+      toast.error(err.message);
     }
   }
 

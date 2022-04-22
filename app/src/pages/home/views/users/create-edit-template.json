@@ -1,0 +1,43 @@
+{
+  "data": {
+    "username": "$username$",
+    "fullname": "$fullname$",
+    "email": "$email$",
+    "role": "$role$"
+  },
+  "parameters": [
+    {
+      "_id": "username",
+      "title": "Username",
+      "type": "STRING",
+      "required": true,
+      "placeholder": "Username",
+      "validationRules": {
+        "match": "^S+w{6,32}S{1,}",
+        "errorMsg": "Username must be between 1 and 255 characters"
+      }
+    },
+    {
+      "_id": "fullname",
+      "title": "Fullname",
+      "type": "STRING",
+      "required": true,
+      "placeholder": "Fullname"
+    },
+    {
+      "_id": "email",
+      "title": "Email",
+      "type": "EMAIL",
+      "required": true,
+      "placeholder": "Email"
+    },
+    {
+      "_id": "role",
+      "resource": "ROLES",
+      "title": "Role",
+      "type": "SELECT",
+      "required": true,
+      "placeholder": "Role"
+    }
+  ]
+}

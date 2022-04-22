@@ -1,0 +1,22 @@
+#cl-scan {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.cl-scan-container {
+  width: 100%;
+  height: 100%;
+}
+
+.cl-scan-indicator {
+  position: absolute;
+  left: 2rem;
+  top: 2rem;
+}
+
+.cl-scan-dashboard-btn {
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem
+}
