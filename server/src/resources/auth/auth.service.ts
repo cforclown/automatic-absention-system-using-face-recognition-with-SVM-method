@@ -51,17 +51,13 @@ export class AuthService {
   }
 
   generateAccessToken (user: User): AccessToken {
+    user.avatar = undefined;
+
     const expiresIn = Environment.getAccessTokenExpIn();
     const accessToken = sign(user, Environment.getAccessTokenSecret(), { expiresIn });
     const refreshToken = sign(user, Environment.getRefreshTokenSecret(), {
       expiresIn: Environment.getAccessRefreshTokenExpIn()
     });
-
-    user.role = {
-      _id: (user.role as Role)._id,
-      name: (user.role as Role).name,
-      desc: (user.role as Role).desc
-    };
 
     return {
       user,
